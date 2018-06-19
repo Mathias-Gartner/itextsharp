@@ -1245,8 +1245,8 @@ namespace iTextSharp.text.pdf {
                 xrefObj.Add(null);
             }
             for (int k = 2; k < xref.Length; k += 2) {
-				long pos = xref[k];
-                if (pos <= 0 || xref[k + 1] > 0)
+                long pos = xref[k];
+                if (pos <= 0 || pos > FileLength || xref[k + 1] > 0)
                     continue;
                 tokens.Seek(pos);
                 tokens.NextValidToken();
