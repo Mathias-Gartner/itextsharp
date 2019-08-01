@@ -1978,11 +1978,12 @@ namespace iTextSharp.text.pdf {
         */
         private void AddOrder(PdfLayer parent, PdfArray arr, Dictionary<string,PdfLayer> ocgmap) {
             PdfObject obj;
-            PdfLayer layer;
+            PdfLayer layer = null;
             for (int i = 0; i < arr.Size; i++) {
                 obj = arr[i];
                 if (obj.IsIndirect()) {
-                    layer = ocgmap[obj.ToString()];
+                    if(ocgmap.ContainsKey(obj.ToString()))
+                      layer = ocgmap[obj.ToString()];
                     if (layer != null) {
                         layer.OnPanel = true;
                         RegisterLayer(layer);
