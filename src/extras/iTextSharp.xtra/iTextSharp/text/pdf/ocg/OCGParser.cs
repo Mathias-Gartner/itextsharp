@@ -117,12 +117,17 @@ namespace iTextSharp.text.pdf.ocg {
                 // remove XObject (form or image) that belong to an OCG that needs to be removed
                 foreach (PdfName name in xobjects.Keys) {
                     PRStream xobject = (PRStream) xobjects.GetAsStream(name);
-                    PdfDictionary oc = xobject.GetAsDict(PdfName.OC);
-                    if (oc != null) {
-                        PdfString ocname = oc.GetAsString(PdfName.NAME);
-                        if (ocname != null && ocgs.Contains(ocname.ToString())) {
-                            xobj.Add(name);
+                    if (xobject != null)
+                    {
+                      PdfDictionary oc = xobject.GetAsDict (PdfName.OC);
+                      if (oc != null)
+                      {
+                        PdfString ocname = oc.GetAsString (PdfName.NAME);
+                        if (ocname != null && ocgs.Contains (ocname.ToString ()))
+                        {
+                          xobj.Add (name);
                         }
+                      }
                     }
                 }
                 foreach (PdfName name in xobj) {
