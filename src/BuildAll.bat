@@ -1,7 +1,7 @@
 @echo off
 
 if not defined msbuildExec (
-	set msbuildExec=msbuild
+	set msbuildExec="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Current\Bin\MSBuild.exe"
 )
 
 if not defined gitExec (
@@ -9,16 +9,8 @@ if not defined gitExec (
 )
 
 if not defined sevenZipExec (
-	set sevenZipExec=7z
+	set sevenZipExec=C:\Program Files\7-Zip\7z.exe
 )
-
-
-echo Cleaning up...
-
-call "%gitExec%" reset --hard
-call "%gitExec%" pull
-call "%gitExec%" clean -qfdx
-if errorlevel 1 goto cleanUpFailed
 
 
 echo Creating archives with sources...
@@ -44,23 +36,23 @@ if errorlevel 1 goto archiveFailed
 echo Building binaries...
 
 rem rebuild core Release
-call "%msbuildExec%" core\itextsharp.csproj /t:Rebuild /p:Configuration=Release,Platform=AnyCPU > nul
+call %msbuildExec% core\itextsharp.csproj /t:Rebuild /p:Configuration=Release,Platform=AnyCPU > nul
 if errorlevel 1 goto buildFailed
 
 rem rebuild core Release_woDrawing
-call "%msbuildExec%" core\itextsharp.csproj /t:Rebuild /p:Configuration=Release_woDrawing,Platform=AnyCPU > nul
+call %msbuildExec% core\itextsharp.csproj /t:Rebuild /p:Configuration=Release_woDrawing,Platform=AnyCPU > nul
 if errorlevel 1 goto buildFailed
 
 rem rebuild pdfa Release
-call "%msbuildExec%" extras\itextsharp.pdfa\itextsharp.pdfa.csproj /t:Rebuild /p:Configuration=Release,Platform=AnyCPU > nul
+call %msbuildExec% extras\itextsharp.pdfa\itextsharp.pdfa.csproj /t:Rebuild /p:Configuration=Release,Platform=AnyCPU > nul
 if errorlevel 1 goto buildFailed
 
 rem rebuild xtra Release
-call "%msbuildExec%" extras\iTextSharp.xtra\iTextSharp.xtra.csproj /t:Rebuild /p:Configuration=Release,Platform=AnyCPU > nul
+call %msbuildExec% extras\iTextSharp.xtra\iTextSharp.xtra.csproj /t:Rebuild /p:Configuration=Release,Platform=AnyCPU > nul
 if errorlevel 1 goto buildFailed
 
 rem rebuild xmlworker Release
-call "%msbuildExec%" extras\itextsharp.xmlworker\itextsharp.xmlworker.csproj /t:Rebuild /p:Configuration=Release,Platform=AnyCPU > nul
+call %msbuildExec% extras\itextsharp.xmlworker\itextsharp.xmlworker.csproj /t:Rebuild /p:Configuration=Release,Platform=AnyCPU > nul
 if errorlevel 1 goto buildFailed
 
 
