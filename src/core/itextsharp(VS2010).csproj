@@ -135,8 +135,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>$(SolutionDir)\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -1539,7 +1540,7 @@
     </Compile>
     <Compile Include="iTextSharp\xmp\XmpUtils.cs">
       <SubType>Code</SubType>
-    </Compile>   
+    </Compile>
     <Compile Include="System\util\collections\HashSet2.cs">
       <SubType>Code</SubType>
     </Compile>
