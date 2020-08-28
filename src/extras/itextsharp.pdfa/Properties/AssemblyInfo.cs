@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Rubicon.Packaging;
 
 [assembly: AssemblyTitle("iTextSharp.pda")]
 [assembly: AssemblyDescription("PDFA functionality for iTextSharp, a free PDF library ported from Java iText.")]
@@ -17,3 +18,6 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("5.5.14")]
 [assembly: AssemblyInformationalVersion("5.5.14-SNAPSHOT")]
+
+[assembly: FacetInfo("iTextSharp", "Core")]
+[assembly: RequiresFeature("BouncyCastle.Crypto")]
